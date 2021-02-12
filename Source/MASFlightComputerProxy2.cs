@@ -963,6 +963,117 @@ namespace AvionicsSystems
             }
         }
 
+        [MASProxy(Dependent = true)]
+        /// <summary>
+        /// Returns the sine of an angle in degrees.  If the given angle is NaN or infinite, returns 0.
+        /// </summary>
+        /// <param name="angle">The angle in degrees</param>
+        /// <returns>A value between -1 and 1, or 0 if the input is invalid.</returns>
+        public double Sine(double angle)
+        {
+            if (!(Double.IsNaN(angle) || Double.IsInfinity(angle)))
+            {
+                return Math.Sin(angle * Math.PI / 180);
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
+        [MASProxy(Dependent = true)]
+        /// <summary>
+        /// Returns the cosine of an angle in degrees.  If the given angle is NaN or infinite, returns 0.
+        /// </summary>
+        /// <param name="angle">The angle in degrees</param>
+        /// <returns>A value between -1 and 1, or 0 if the input is invalid.</returns>
+        public double Cosine(double angle)
+        {
+            if (!(Double.IsNaN(angle) || Double.IsInfinity(angle)))
+            {
+                return Math.Cos(angle * Math.PI / 180);
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
+        [MASProxy(Dependent = true)]
+        /// <summary>
+        /// Returns the tangent of an angle in degrees.  If the given angle is NaN or infinite, returns 0.
+        /// If the angle is an asymptote of the tangent function, also returns 0.
+        /// </summary>
+        /// <param name="angle">The angle in degrees</param>
+        /// <returns>A value equal to the tangent, or 0 if the input is invalid.</returns>
+        public double Tangent(double angle)
+        {
+            if (!(Double.IsNaN(angle) || Double.IsInfinity(angle) || (angle + 180) % 360 == 0))
+            {
+                return Math.Cos(angle * Math.PI / 180);
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
+        [MASProxy(Dependent = true)]
+        /// <summary>
+        /// Returns the arcsine of a number between -1 and 1.  If the given number is NaN, infinite, or
+        /// out of this domain, returns 0.
+        /// </summary>
+        /// <param name="ratio">The ratio provided as input</param>
+        /// <returns>A value between -180 and 180 inclusive, or 0 if the input is invalid.</returns>
+        public double Arcsin(double ratio)
+        {
+            if (!(Double.IsNaN(ratio) || Double.IsInfinity(ratio) || Math.Abs(ratio) > 1))
+            {
+                return Math.Asin(ratio) * 180 / Math.PI;
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
+        [MASProxy(Dependent = true)]
+        /// <summary>
+        /// Returns the arccosine of a number between -1 and 1.  If the given number is NaN, infinite, or
+        /// out of this domain, returns 0.
+        /// </summary>
+        /// <param name="ratio">The ratio provided as input</param>
+        /// <returns>A value between 0 and 360 inclusive, or 0 if the input is invalid.</returns>
+        public double Arccos(double ratio)
+        {
+            if (!(Double.IsNaN(ratio) || Double.IsInfinity(ratio) || Math.Abs(ratio) > 1))
+            {
+                return Math.Acos(ratio) * 180 / Math.PI;
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
+        [MASProxy(Dependent = true)]
+        /// <summary>
+        /// Returns the arctangent of a number.  If the given number is NaN or infinite, returns 0.
+        /// </summary>
+        /// <param name="ratio">The ratio provided as input</param>
+        /// <returns>A value between -180 and 180 exclusive, or 0 if the input is invalid.</returns>
+        public double Arctan(double ratio)
+        {
+            if (!(Double.IsNaN(ratio) || Double.IsInfinity(ratio) || Math.Abs(ratio) > 1))
+            {
+                return Math.Atan(ratio) * 180 / Math.PI;
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
         #endregion
 
         /// <summary>
